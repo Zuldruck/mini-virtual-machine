@@ -1,5 +1,6 @@
 import fs from 'fs';
 import Instruction from './Instruction.js';
+import VM from './VM.js';
 
 export default class CommandLineInterpreter
 {
@@ -7,13 +8,15 @@ export default class CommandLineInterpreter
     .readFileSync(0, 'utf8')
     .trim()
     .split('\n');
-  _instructions = [];
+
+  _vm = new VM();
 
   run() {
     for (const input of this._inputs) {
       if (input.trim() === '')
         continue;
-      this._instructions.push(new Instruction(input));
+      const instruction = new Instruction(input);
+      this._vm[instruction.name](instruction.value);
     }
   }
 }
