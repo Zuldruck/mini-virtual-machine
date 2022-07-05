@@ -16,4 +16,12 @@ export default class Instruction
     if (instruction.argsLength > 0)
       this._value = tokens[1];
   }
+
+  get name() {
+    return this._name;
+  }
+
+  get value() {
+    return this._value;
+  }
 }
