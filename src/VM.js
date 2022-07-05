@@ -9,13 +9,15 @@ export default class VM
   }
 
   pop() {
+    if (this._stack.isEmpty())
+      throw new Error('Stack is empty, cannot pop');
     this._stack.pop();
   }
 
   dump() {
     const elements = this._stack.toArray().reverse();
     for (const element of elements) {
-      console.log(element);
+      console.log(element.toString());
     }
   }
 
@@ -24,12 +26,20 @@ export default class VM
   }
 
   dup() {
-    throw new Error('dup is not implemented yet');
+    if (this._stack.isEmpty())
+      throw new Error('Stack is empty, cannot dup');
+    const value = this._stack.peek();
+    this.push(value);
   }
 
   swap() {
-    throw new Error('swap is not implemented yet');
-  }
+    if (this._stack.size() < 2)
+      throw new Error('Stack size is not big enough, cannot swap');
+      const first = this._stack.pop();
+      const second = this._stack.pop();
+      this._stack.push(first);
+      this._stack.push(second);
+    }
 
   assert(value) {
     throw new Error('assert is not implemented yet');
@@ -55,19 +65,32 @@ export default class VM
     throw new Error('mod is not implemented yet');
   }
 
-  load(value) {
-    throw new Error('load is not implemented yet');
+  load(register) {
+    const stack = this._stack.toArray();
+    const value = stack[register.value];
+    if (!value)
+      throw new Error(`Register ${register.value} does not exist`);
+    this._stack.push(value);
   }
 
-  store(value) {
-    throw new Error('store is not implemented yet');
+  store(register) {
+    if (this._stack.size() < 1)
+      throw new Error('Stack size is not big enough');
+    const stack = this._stack.toArray();
+    const value = stack.pop();
+    if (!stack[register.value - 1])
+      throw new Error(`Register ${register.value} does not exist`);
+    stack[register.value - 1] = value;
+    this._stack = Stack.fromArray(stack);
   }
 
   print() {
-    throw new Error('print is not implemented yet');
+    if (this._stack.size() < 1)
+      throw new Error('Stack size is not big enough');
+    console.log(String.fromCharCode(this._stack.peek().value));
   }
 
   exit() {
-    throw new Error('exit is not implemented yet');
+    process.exit(0);
   }
 }
