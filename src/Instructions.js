@@ -1,0 +1,18 @@
+export default [
+  { name: 'push', argsLength: 1 },
+  { name: 'pop', argsLength: 0 },
+  { name: 'dump', argsLength: 0 },
+  { name: 'clear', argsLength: 0 },
+  { name: 'dup', argsLength: 0 },
+  { name: 'swap', argsLength: 0 },
+  { name: 'assert', argsLength: 1 },
+  { name: 'add', argsLength: 0 },
+  { name: 'sub', argsLength: 0 },
+  { name: 'mul', argsLength: 0 },
+  { name: 'div', argsLength: 0 },
+  { name: 'mod', argsLength: 0 },
+  { name: 'load', argsLength: 1 },
+  { name: 'store', argsLength: 1 },
+  { name: 'print', argsLength: 0 },
+  { name: 'exit', argsLength: 0 },
+];
