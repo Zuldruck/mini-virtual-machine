@@ -1,0 +1,11 @@
+{
+  "name": "B-SYN-400-MPL-4-1-abstractVM-lucas.sanchez",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "author": "Lucas SANCHEZ",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  }
+}
