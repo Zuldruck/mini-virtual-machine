@@ -1,5 +1,5 @@
 {
-  "name": "B-SYN-400-MPL-4-1-abstractVM-lucas.sanchez",
+  "name": "mini-virtual-machine",
   "version": "1.0.0",
   "main": "src/index.js",
   "license": "MIT",
