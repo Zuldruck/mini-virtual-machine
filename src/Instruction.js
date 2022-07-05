@@ -1,4 +1,5 @@
 import Instructions from './Instructions.js';
+import { createOperand } from './operands/Factory.js';
 
 export default class Instruction
 {
@@ -14,7 +15,7 @@ export default class Instruction
       throw new Error(`Instruction ${instruction.name} takes ${instruction.argsLength || 'no'} argument. ${tokens.length - 1} was given.`);
     this._name = tokens[0];
     if (instruction.argsLength > 0)
-      this._value = tokens[1];
+      this._value = createOperand(tokens[1]);
   }
 
   get name() {
