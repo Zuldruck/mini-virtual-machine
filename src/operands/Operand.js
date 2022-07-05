@@ -21,7 +21,7 @@ export class IOperand
 
 export class AOperand extends IOperand
 {
-  constructor(type, value) {
+  constructor(type, value, precision) {
     super(type, value);
     if (!Object.values(OperandType).includes(type)) {
       throw new Error(`Operand Type ${type} doesn\'t exist`);
@@ -29,6 +29,7 @@ export class AOperand extends IOperand
 
     this._type = type;
     this._value = value;
+    this._precision = precision;
   }
 
   get type() {
@@ -47,8 +48,16 @@ export class AOperand extends IOperand
     this._value = _value;
   }
 
+  get precision() {
+    return this._precision;
+  }
+
+  set precision(_precision) {
+    this._precision = _precision;
+  }
+
   toString() {
-    return this._value.toString();
+    return this._value % 1 === 0 ? this._value : parseFloat(this._value.toFixed(this._precision));
   }
 
   add(operand) {
@@ -71,4 +80,3 @@ export class AOperand extends IOperand
     return this._value % operand.value;
   }
 }
-
