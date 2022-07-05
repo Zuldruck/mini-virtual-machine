@@ -11,11 +11,16 @@ export default class CommandLineInterpreter
 
   _vm = new VM();
 
+  trimLine(input) {
+    return input.replace(/;.+/, '').trim();
+  }
+
   run() {
     for (const input of this._inputs) {
-      if (input.trim() === '')
+      const trimmedInput = this.trimLine(input);
+      if (trimmedInput === '')
         continue;
-      const instruction = new Instruction(input);
+      const instruction = new Instruction(trimmedInput);
       this._vm[instruction.name](instruction.value);
     }
   }
