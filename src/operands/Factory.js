@@ -6,7 +6,7 @@ import Float from './Float.js';
 import Double from './Double.js';
 import BigDecimal from './BigDecimal.js';
 
-const Operands = [
+export const Operands = [
   { name: 'int8', class: Int8, type: OperandType.INT8 },
   { name: 'int16', class: Int16, type: OperandType.INT16 },
   { name: 'int32', class: Int32, type: OperandType.INT32 },
