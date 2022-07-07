@@ -1,4 +1,5 @@
 import { OperandType } from '../enums/index.js';
+import { Operands } from './Factory.js';
 
 export class IOperand
 {
@@ -17,6 +18,13 @@ export class IOperand
   mul() {}
   div() {}
   mod() {}
+}
+
+function createOperandFromParents(operandTypeA, operandTypeB, value)
+{
+  const maxOperandType = Math.max(operandTypeA, operandTypeB);
+  const newOperandInfo = Operands.find(op => op.type === maxOperandType);
+  return new newOperandInfo.class(maxOperandType, value.toString());
 }
 
 export class AOperand extends IOperand
@@ -61,22 +69,27 @@ export class AOperand extends IOperand
   }
 
   add(operand) {
-    return this._value + operand.value;
+    const value = this._value + operand.value;
+    return createOperandFromParents(operand.type, this._type, value);
   }
 
   sub(operand) {
-    return this._value - operand.value;
+    const value = this._value - operand.value;
+    return createOperandFromParents(operand.type, this._type, value);
   }
 
   mul(operand) {
-    return this._value * operand.value;
+    const value = this._value * operand.value;
+    return createOperandFromParents(operand.type, this._type, value);
   }
 
   div(operand) {
-    return this._value / operand.value;
+    const value = this._value / operand.value;
+    return createOperandFromParents(operand.type, this._type, value);
   }
 
   mod(operand) {
-    return this._value % operand.value;
+    const value = this._value % operand.value;
+    return createOperandFromParents(operand.type, this._type, value);
   }
 }
