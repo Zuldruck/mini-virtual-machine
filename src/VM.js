@@ -1,4 +1,5 @@
 import Stack from './lib/Stack.js';
+import { Operands } from './operands/Factory.js';
 
 export default class VM
 {
@@ -41,8 +42,13 @@ export default class VM
       this._stack.push(second);
     }
 
-  assert(value) {
-    throw new Error('assert is not implemented yet');
+  assert(register) {
+    const topRegister = this._stack.peek();
+    const topRegisterInfo = Operands.find(op => op.type === topRegister.type);
+    const registerInfo = Operands.find(op => op.type === register.type);
+    if (topRegister.value !== register.value
+    || topRegister.type !== register.type)
+      throw new Error(`Top register : ${topRegisterInfo.name}(${topRegister.value}) is not equal to ${registerInfo.name}(${register.value})`);
   }
 
   add() {
