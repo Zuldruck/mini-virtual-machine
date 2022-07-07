@@ -1,4 +1,6 @@
 import Stack from './lib/Stack.js';
+import Int8 from './operands/Int8.js';
+import { OperandType } from './enums/OperandType.js';
 import { Operands } from './operands/Factory.js';
 
 export default class VM
@@ -108,7 +110,9 @@ export default class VM
   print() {
     if (this._stack.size() < 1)
       throw new Error('Stack size is not big enough');
-    console.log(String.fromCharCode(this._stack.peek().value));
+    const value = this._stack.peek().value;
+    this.assert(new Int8(OperandType.INT8, value.toString()));
+    console.log(String.fromCharCode(value));
   }
 
   exit() {
