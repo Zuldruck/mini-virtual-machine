@@ -84,11 +84,15 @@ export class AOperand extends IOperand
   }
 
   div(operand) {
+    if (operand.value === 0)
+      throw new Error('Cannot divide by 0');
     const value = this._value / operand.value;
     return createOperandFromParents(operand.type, this._type, value);
   }
 
   mod(operand) {
+    if (operand.value === 0)
+      throw new Error('Cannot divide by 0');
     const value = this._value % operand.value;
     return createOperandFromParents(operand.type, this._type, value);
   }
