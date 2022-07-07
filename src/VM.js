@@ -52,23 +52,38 @@ export default class VM
   }
 
   add() {
-    throw new Error('add is not implemented yet');
+    const operandA = this._stack.pop();
+    const operandB = this._stack.pop();
+    const newOperand = operandA.add(operandB);
+    this._stack.push(newOperand);
   }
 
   sub() {
-    throw new Error('sub is not implemented yet');
+    const operandA = this._stack.pop();
+    const operandB = this._stack.pop();
+    const newOperand = operandA.sub(operandB);
+    this._stack.push(newOperand);
   }
 
   mul() {
-    throw new Error('mul is not implemented yet');
+    const operandA = this._stack.pop();
+    const operandB = this._stack.pop();
+    const newOperand = operandA.mul(operandB);
+    this._stack.push(newOperand);
   }
 
   div() {
-    throw new Error('div is not implemented yet');
+    const operandA = this._stack.pop();
+    const operandB = this._stack.pop();
+    const newOperand = operandA.div(operandB);
+    this._stack.push(newOperand);
   }
 
   mod() {
-    throw new Error('mod is not implemented yet');
+    const operandA = this._stack.pop();
+    const operandB = this._stack.pop();
+    const newOperand = operandA.mod(operandB);
+    this._stack.push(newOperand);
   }
 
   load(register) {
